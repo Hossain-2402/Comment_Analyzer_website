@@ -1,0 +1,278 @@
+body{
+	background: white;
+}
+
+.background_gradient_color{
+	position:absolute;
+	top:0;
+	height:70vh;
+	width:70vh;
+	margin-top:5vh;
+	margin-left:50%;
+	transform:translate(-50%,0);
+	background: #B8A9D6;
+	opacity:0.50;
+	border-radius:50%;
+	filter:blur(75px);
+	
+}
+
+
+
+
+.input_button_area{
+	//position:absolute;
+	//top:0;
+	height:10vh;
+	width:80vw;
+	background:white;
+	border-radius: 10px;
+	margin:10vh 0 0 50%;
+	transform: translate(-50%,0%);
+	box-shadow: 0 0 10px black;
+	display:flex;
+	z-index:5;
+	backdrop-filter:blur(35px);
+}
+
+.search_field{
+	flex:4;
+	height:100%;
+	outline:none;
+	background:none;
+	color:black;
+	font-family:verdana;
+	padding:0 2vw;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+.search_btn{
+	flex:1;
+	height:100%;
+	background:#B8A9D6;
+	color:black;
+	font-family:verdana;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor:pointer;
+}
+
+
+.loading_area{
+	height:7.5vh;
+	width:20vw;
+	margin:10vh 0 10vh 50%;
+	transform:translate(-50%,0);
+	background:none;
+	border-radius: 10px;
+	display:flex;
+}
+
+.loading_box{
+	flex:1;
+	background:#BBA9D6;
+	box-shadow:0 0 10px black;
+	border-radius:10px;
+	animation: animate_loading_box 2.5s infinite;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+}
+.b1{
+	animation-delay:0.2s;
+}
+.b2{
+	animation-delay:0.4s;
+}
+.b3{
+	animation-delay:0.6s;
+}
+.b4{
+	animation-delay:0.8s;
+}
+@keyframes animate_loading_box{
+	0%{
+		margin:0;
+		border-radius: 0px;
+	}
+	50%{
+		margin:2vh;
+		border-radius:10px;
+	}
+	100%{
+		margin:0;
+		border-radius:0px;
+	}	
+
+}
+
+.analyze_loading{
+	animation:none;
+	margin:0;
+	border-radius: 10px;
+	
+}
+
+
+.youtube_box{
+	height:50vh;
+	width:70vw;
+	margin:5vh 0 0 50%;
+	transform:translate(-50%,0);
+	background:none;
+	box-shadow:0 0 50px #B8A9D6;
+	border-radius: 10px;
+	overflow:hidden;
+}
+
+.video{
+	height:100%;
+	width:100%;
+	border-radius:10px;
+}
+.analyze_comments_btn{ 
+	width:40vw; 
+	padding:2vh 2vw;
+	margin:5vh 0 10vh 50%;
+	transform:translate(-50%,0);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	border-radius:10px;
+	font-family:verdana;
+	//background: #B8A9D6;
+	background:linear-gradient(to left, #BBA9D6,white, #BBA9D6);
+	background-size:400%;
+	color:black;
+	box-shadow:0 0 10px black;
+	cursor:pointer;
+	transition:0.4s;
+	animation:animate_bg_color 5s ease-in-out infinite;
+}
+
+@keyframes animate_bg_color{
+	0%{
+		background-position:top left;
+	}
+	50%{
+		background-position:bottom right;
+	}
+	100%{
+		background-position:top left;
+	}
+
+}
+.analyze_comments_btn:hover{
+	box-shadow:0 0 25px black;
+	background: #BBA9D6;
+
+}
+
+.sentiment_bar{
+	height:10vh;
+	width:60vw;
+	box-shadow:0 0 10px black;
+	border-radius:10px;
+	margin:5vh 0 5vh 50%;
+	transform:translate(-50%,0);
+	display:flex;
+	overflow:hidden;
+
+}
+
+.positive{
+	font-family:verdana;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:black;
+}
+
+
+.negative{
+	font-family:verdana;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:white;
+}
+.legend {
+	font-family: "Poppins", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: black;
+}
+
+.legend-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0;
+}
+
+.legend-square {
+        width: 10px;
+        height: 10px;
+        border-radius: 2px;
+        flex: 0 0 10px;
+}
+
+.green {
+        background: #16a34a;
+}
+
+.red {
+        background: #dc2626;
+}
+
+.legend-text {
+        //font-size: 14px;
+        line-height: 1;
+}
+
+
+
+
+@media(max-width:991px){
+	.background_gradient_color{
+		height:40vh;
+		width:25vh;
+		opacity:0.75;
+		margin-top: 10vh;
+	
+	}
+	.input_button_area{
+		width:90vw;
+		margin:20vh 0 0 50%;
+		border-radius:10px;
+	}		
+	.search_field{
+		font-size: 12px;
+	}
+	.search_btn{
+		flex:2;
+		font-size: 16px;
+
+	}
+
+	.loading_area{
+		width:70vw;
+	}
+	.youtube_box{
+		height:25vh;
+		width:80vw;
+	}
+	.analyze_comments_btn{
+		width:60vw;
+	}
+	.sentiment_bar{
+		width:85vw;
+		//font-size:12px;
+	}
+}

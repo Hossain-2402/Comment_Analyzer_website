@@ -1,0 +1,18 @@
+1.
+--
+I want to make 2 lines as followed:
+	1. first line should have a green square (similar to the size of a bullet point) and beside that there should be a text "Positive comments"
+	2. second line should have a red square (similar to the size of a bullet point) and beside that there should be a text "Negative comments"
+
+
+generate the html and css code for that. only use the div tag of html.
+Use "className" instead of class. and make indentation and line break in css. the indentation in both html and css should be 8 spaces.
+
+
+
+
+
+
+
+2.
+--
