@@ -168,7 +168,9 @@ let opts = {
 				<div className="loading_box b6 analyze_loading"> N </div>
 				<div className="loading_box b7 analyze_loading"> G </div>
 			  </div>
-			  <div className="alert_text">The Analysis might take a few minutes</div>
+			  <div className="alert_text">
+				The Analysis might take a few minutes
+			  </div>
 			</>
 		) : (
 			<>
@@ -200,7 +202,10 @@ let opts = {
 
 	<div className="header_area"> 
 		<div className="header_text_box">
-			
+			<div className="title_text">Your one stop Analyzer</div>
+			<div className="left_chat"></div>
+			<div className="right_chat"></div>
+			<div className="left_chat"></div>
 		</div>
 
 		<div className="header_box h1"></div>

@@ -27,7 +27,7 @@ body{
 	width:80vw;
 	background:white;
 	border-radius: 10px;
-	margin:10vh 0 0 50%;
+	margin:5vh 0 0 50%;
 	transform: translate(-50%,0%);
 	box-shadow: 0 0 10px black;
 	display:flex;
@@ -274,15 +274,46 @@ body{
 	box-shadow:0 0 25px black;
 	
 }
+
 .header_text_box::after {
   content: "";
   position: absolute;
-  bottom: 10%;
+  bottom: 2%;
   left: 15%;
   width: 70%;
   height: 25%; /* Adjust height of fade area */
   background:white;
 }
+
+.title_text{
+	width:100%;
+	padding:2vh 0;
+	margin:2.5vh 0 0 50%;
+	transform:translate(-50%,0);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color:black;
+	font-size:20px;
+	font-family: "Anton SC", sans-serif;
+}
+
+
+.left_chat{
+	height:15%;
+	width:60%;
+	margin:2vh 0 0 5%;
+	background:hsl(0,0%,90%);
+}
+
+.right_chat{
+	height:15%;
+	width:60%;
+	margin:2vh 0 0 35%;
+	background:hsl(0,0%,75%);
+}
+
+
 
 .header_box{
 	position:absolute;
@@ -372,7 +403,7 @@ body{
 	}
 	.input_button_area{
 		width:90vw;
-		margin:20vh 0 0 50%;
+		margin:15vh 0 0 50%;
 		border-radius:10px;
 	}		
 	.search_field{
@@ -409,6 +440,10 @@ body{
 		width: 90vw;
 	}
 
+	.title_text{
+		font-size:14px;
+	}
+	
 	.header_box{
 		height:25vw;
 		width:25vw;
