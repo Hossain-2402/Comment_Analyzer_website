@@ -16,3 +16,35 @@ Use "className" instead of class. and make indentation and line break in css. th
 
 2.
 --
+
+Break the following code into 5 separate loops to analyze all the comment without getting "non-resposive" chrome tab
+	
+	 for (let i = 0; i < comments.length; i++) {
+		let current_sentiment = await p(comments[i]);
+
+		const { label } = current_sentiment[0];
+
+		if (label === "POSITIVE") {
+			positive_comments_counter++;
+		} else if (label === "NEGATIVE") {
+			negative_comments_counter++;
+		}
+	  }
+
+The indentation should be 8 spaces.
+don't change the code too much and try to keep thigs as they are now.
+After each batch, make a gap of 0.5 seconds using the settime() or whatever is used in js.
+Don't make a separate funciton to do that.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,7 +36,7 @@ export default function Home() {
         params: {
           part: "snippet",
           videoId: videoID,
-          maxResults: 100,
+          maxResults: 500,
           key: "AIzaSyCq9AM3EVGJr-eO5mSU656oc8Vqv4JrzzA",
         },
       })
@@ -55,7 +55,21 @@ export default function Home() {
 
 	
   }
-     
+
+  const processBatch = async (start, end, comments, p) => {
+        for (let i = start; i < end; i++) {
+                let current_sentiment = await p(comments[i]);
+
+                const { label } = current_sentiment[0];
+
+                if (label === "POSITIVE") {
+                        positive_comments_counter++;
+                } else if (label === "NEGATIVE") {
+                        negative_comments_counter++;
+                }
+        }
+  };
+
 
 
   const analyzeComments = async ()=>{
@@ -67,20 +81,30 @@ export default function Home() {
   	const p = await pipeline(
         "sentiment-analysis",
         "Xenova/distilbert-base-uncased-finetuned-sst-2-english"
-      );
+      );	
 
-	
-	 for (let i = 0; i < comments.length; i++) {
-		let current_sentiment = await p(comments[i]);
 
-		const { label } = current_sentiment[0];
 
-		if (label === "POSITIVE") {
-			positive_comments_counter++;
-		} else if (label === "NEGATIVE") {
-			negative_comments_counter++;
-		}
-	  }
+        // 1st batch (0–19%)
+        await processBatch(0, Math.floor(comments.length * 0.2), comments, p);
+	setTimeout(() => {}, 500); // 0.5-second gap
+
+        // 2nd batch (20–39%)
+        await processBatch(Math.floor(comments.length * 0.2), Math.floor(comments.length * 0.4), comments, p);
+	setTimeout(() => {}, 500); // 0.5-second gap
+
+        // 3rd batch (40–59%)
+        await processBatch(Math.floor(comments.length * 0.4), Math.floor(comments.length * 0.6), comments, p);
+	setTimeout(() => {}, 500); // 0.5-second gap
+
+        // 4th batch (60–79%)
+        await processBatch(Math.floor(comments.length * 0.6), Math.floor(comments.length * 0.8), comments, p);
+	setTimeout(() => {}, 500); // 0.5-second gap
+
+        // 5th batch (80–100%)
+        await processBatch(Math.floor(comments.length * 0.8), comments.length, comments, p);
+
+
 
 	setIsAnalysisLoading(false);
 
@@ -109,12 +133,13 @@ let opts = {
 
   return (      
     <div>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap" rel="stylesheet"/>
 	<div className="background_gradient_color"></div>
        
 
 	<div className="input_button_area">   
             <input type="text" placeholder="Enter video ID" className="search_field"  onChange={(e)=>{ setVideoID(e.target.value);}}/>
-            <button className="search_btn" onSubmit={()=>{ loadVideoComments(); }} onClick={()=>{  loadVideoComments() }}>Get</button>
+            <button className="search_btn" onSubmit={()=>{ loadVideoComments(); }} onClick={()=>{  loadVideoComments() }}>Fetch</button>
         </div>
 
 
@@ -133,7 +158,8 @@ let opts = {
 			<Youtube opts={opts} videoId={videoID} className="video"/> 
 		</div>
 		{isAnalysisLoading === true ? (
-			  <div className="loading_area ">
+			<>
+			<div className="loading_area ">
 				<div className="loading_box b1 analyze_loading"> L </div>
 				<div className="loading_box b2 analyze_loading"> O </div>
 				<div className="loading_box b3 analyze_loading"> A </div>
@@ -142,15 +168,16 @@ let opts = {
 				<div className="loading_box b6 analyze_loading"> N </div>
 				<div className="loading_box b7 analyze_loading"> G </div>
 			  </div>
-			
+			  <div className="alert_text">The Analysis might take a few minutes</div>
+			</>
 		) : (
 			<>
 				<div className="analyze_comments_btn" onClick={()=>{ analyzeComments(); }}>Analyze Comments</div>
 				{finishedAnalysis === true?(
 					<>
 					<div className="sentiment_bar">
-					    <div className="positive" style={{ background:"hsl(120, 73.4%, 63.1%)", flex:greenFlex }}>P</div>
-					    <div className="negative" style={{ background:"hsl(8, 100%, 46%)", flex:redFlex }}>N</div>
+					    <div className="positive" style={{ background:"hsl(124 100% 60%)", flex:greenFlex }}>P</div>
+					    <div className="negative" style={{ background:"hsl(360 100% 53.2%)", flex:redFlex }}>N</div>
 					</div>
 					<div className="legend">
 						<div className="legend-row">
@@ -170,8 +197,23 @@ let opts = {
 	  </>
 	)}
 
+
+	<div className="header_area"> 
+		<div className="header_text_box">
+			
+		</div>
+
+		<div className="header_box h1"></div>
+		<div className="header_box h2"></div>
+		<div className="header_box h3"></div>
+		<div className="header_box h4"></div>
+	</div>
+
+	
+
+
+
 {/*	
-	TASK: make a generalized sentence depending on the analysis result
 
 	TASK: Make an animation box that comes under the SEARCH BAR. (from beginning)
 
